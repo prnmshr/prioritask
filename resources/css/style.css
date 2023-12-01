@@ -1,0 +1,159 @@
+@font-face {
+    font-family: Poppins;
+    src: url('..\fonts\Poppins\Poppins-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: Poppins-Reg;
+    src: url('..\fonts\Poppins\Poppins-Regular.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    font-family: Poppons;
+    background-color: #E9EDC9;
+}
+
+/* Sidebar */
+
+.sidebar {
+    height: 100vh;
+    width: 80px;
+    background-color: #CCD5AE;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    margin-top: 45px;
+    margin-bottom: 30px;
+    max-width: 40px;
+    height: 40px;
+}
+
+.logo-img {
+    max-width: 100%;
+    height: auto;
+}
+
+.icon {
+    width: 35px;
+    height: 35px;
+    margin-block: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+}
+
+a.icon:hover {
+    transform: scale(1.1);
+}
+
+a.icon:active {
+    background-color: #E9EDC9;
+    border-radius: 5px;
+    padding: 4px;
+}
+
+.icon img {
+    width: 100%;
+}
+
+/* Main */
+main {
+    margin-inline-start: 100px;
+    font-family: Poppins-Reg;
+}
+
+h1.title {
+    font-family: Poppins;
+    padding: 40px;
+    font-size: 35px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    margin-bottom: 5%;
+    margin-top: 0;
+    align-items: center;
+    grid-gap: 25px;
+}
+
+.quadran {
+    width: 550px !important;
+    height: 230px;
+    border-radius: 10px;
+    border: none !important;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.25);
+}
+
+.q-1 {
+    background-color: rgba(250, 152, 132, 0.80) !important;
+}
+
+.q-2 {
+    background-color: #FFDB89;
+}
+
+.q-3 {
+    background-color: #FFEBB4;
+}
+
+.q-4 {
+    background-color: #C7E8CA;
+}
+
+.card-title {
+    text-align: center !important;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.task-list {
+    list-style: none;
+    padding-block: 20px;
+}
+
+img.card-icon {
+    max-width: 50%;
+    height: auto;
+    flex-shrink: 0;
+    padding-bottom: 50px;
+}
+
+.task-menu {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-inline: 43%;
+}
+
+.card-icon {
+    opacity: 25%;
+}
+
+a.card-link:active {
+    background: none !important;
+}
+
+
+/* Footer */
+footer {
+    font-family: Poppins;
+}
+
+h1.footer {
+    font-size: 13px;
+    margin-inline-start: 80px;
+    text-align: center;
+    padding-block-start: 50px;
+    padding-bottom: 20px;
+    opacity: 80%;
+}
