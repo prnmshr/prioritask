@@ -19,3 +19,16 @@ Route::get('/', function () {
 });
 
 Route::get('/index', [SiteController::class,'home'])->name('home');
+
+Route::get('/quadrant-1', [SiteController::class,'quadone'])->name('quadone');
+
+Route::get('/quadrant-2', [SiteController::class,'quadtwo'])->name('quadtwo');
+
+Route::get('/quadrant-3', [SiteController::class,'quadthree'])->name('quadthree');
+
+Route::get('/quadrant-4', [SiteController::class,'quadfour'])->name('quadfour');
+
+
+
+
+
