@@ -10,4 +10,24 @@ class SiteController extends Controller
     {
         return view('site.home');
     }
+
+    public function quadone()
+    {
+        return view('site.quadone');
+    }
+
+    public function quadtwo()
+    {
+        return view('site.quadtwo');
+    }
+
+    public function quadthree()
+    {
+        return view('site.quadthree');
+    }
+
+    public function quadfour()
+    {
+        return view('site.quadfour');
+    }
 }
