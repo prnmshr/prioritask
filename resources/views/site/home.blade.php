@@ -9,7 +9,10 @@
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
                 <ul class="task-list">
-                    <li class="card-text">Lorem ipsum</li>
+
+                    <li class="card-text">Lorem ipsum <p class="card-text"><small class="text-body-secondary">Last updated 3
+                                mins ago</small></p>
+                    </li>
                     <li class="card-text">Ipsum Lorem</li>
                     <li class="card-text">Hiyaa apa ayo</li>
                 </ul>

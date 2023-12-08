@@ -23,12 +23,14 @@
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur ipsa quam dicta, culpa
                                 aut iste eius harum! Odio nam modi,
                             </label>
+                            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
                         </li>
                         <li class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
                             <label class="form-check-label" for="flexCheckChecked">
                                 Checked checkbox
                             </label>
+                            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
                         </li>
                         <li class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -36,6 +38,7 @@
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur ipsa quam dicta, culpa
                                 aut iste eius harum! Odio nam modi,
                             </label>
+                            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
                         </li>
                     </ul>
 
