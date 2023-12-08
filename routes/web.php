@@ -14,9 +14,11 @@ use App\Http\Controllers\SiteController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [SiteController::class,'home'])->name('home');
 
 Route::get('/index', [SiteController::class,'home'])->name('home');
 
@@ -26,9 +28,18 @@ Route::get('/quadrant-2', [SiteController::class,'quadtwo'])->name('quadtwo');
 
 Route::get('/quadrant-3', [SiteController::class,'quadthree'])->name('quadthree');
 
+Route::get('/tips', [SiteController::class,'tips'])->name('tips');
+
+Route::get('/evaluate', [SiteController::class,'evaluate'])->name('evaluate');
+
+Route::get('/achieved', [SiteController::class,'achieved'])->name('achieved');
+
+Route::get('/unachieved', [SiteController::class,'unachieved'])->name('unachieved');
+
+Route::get('/insights', [SiteController::class,'insights'])->name('insights');
+
+Route::get('/statistics', [SiteController::class,'statistics'])->name('statistics');
+
 Route::get('/quadrant-4', [SiteController::class,'quadfour'])->name('quadfour');
-
-
-
 
 

@@ -18,11 +18,11 @@
                 alt="logo"></div>
         <a href="{{ route('home') }}" class="icon"><img
                 src="{{ Vite::asset('resources/images/icons/to-do-list.png') }}" alt="Icon 1"></a>
-        <a href="#" class="icon"><img src="{{ Vite::asset('resources/images/icons/check.png') }}"
+        <a href="{{ route('evaluate') }}" class="icon"><img src="{{ Vite::asset('resources/images/icons/check.png') }}"
                 alt="Icon 2"></a>
-        <a href="#" class="icon"><img src="{{ Vite::asset('resources/images/icons/idea.png') }}"
+        <a href="{{ route('tips') }}" class="icon"><img src="{{ Vite::asset('resources/images/icons/idea.png') }}"
                 alt="Icon 3"></a>
-        <a href="#" class="icon"><img src="{{ Vite::asset('resources/images/icons/profile-user.png') }}"
+        <a href="{{ route('home') }}" class="icon"><img src="{{ Vite::asset('resources/images/icons/profile-user.png') }}"
                 alt="Icon 4"></a>
         <a href="#" class="icon back" onclick="goBack()">@yield('back')</a>
     </div>

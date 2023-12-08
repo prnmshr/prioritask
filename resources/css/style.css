@@ -49,6 +49,16 @@ body {
     color: #fff;
 }
 
+.ev-icon img {
+    width: 60px !important;
+    margin: 20px;
+}
+
+.ev-img img {
+    margin-block-start: 30px;
+    width: 30%;
+}
+
 a.icon:hover {
     transform: scale(1.1);
 }
@@ -121,6 +131,10 @@ h1.title {
     box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.25);
 }
 
+.ev-grid {
+    width: 500px !important;
+}
+
 div.q-end {
     width: 370px !important;
     padding-inline: 20px;
@@ -147,11 +161,35 @@ div.q-end {
     background-color: #C7E8CA;
 }
 
+.p-tips {
+    width: 1100px !important;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.p-ev {
+    width: 1100px !important;
+    height: 500px;
+}
 .card-title {
     text-align: center !important;
     text-transform: uppercase;
     font-weight: bold;
     padding-block: 20px;
+}
+
+.tips-title {
+    text-transform: none !important;
+    text-align: right;
+    text-decoration: none;
+    color: #4F4A45;
+    font-weight: bolder;
+    padding-inline: 30px;
+}
+
+.ev-title {
+    text-decoration: none;
+    color: #4F4A45;
 }
 
 li.card-text {
