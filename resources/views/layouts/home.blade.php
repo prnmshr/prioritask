@@ -36,7 +36,7 @@
     </main>
 
     <footer>
-        <h1 class="footer">Copyright &copy; C23-PS082 Capstone Dicoding x SIB</h1>
+        <h1 class="footer">Copyright &copy; C523-PS082 Capstone Dicoding x SIB</h1>
     </footer>
 
     {{--  SCRIPT  --}}
