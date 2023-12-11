@@ -1,0 +1,1 @@
+{{--  <img src="{{ Vite::asset('resources/images/logos/tasks.png') }}" alt="" style="max-width: 30%; height: auto;">  --}}
