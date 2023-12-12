@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/dashboard', [SiteController::class,'home'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [TaskController::class,'home'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -34,13 +34,13 @@ require __DIR__.'/auth.php';
 
 Route::get('/', [TaskController::class,'home'])->middleware(['auth', 'verified'])->name('home');
 
-Route::get('/quadrant-1', [SiteController::class,'quadone'])->name('quadone');
+Route::get('/quadrant-1', [TaskController::class,'quadone'])->name('quadone');
 
-Route::get('/quadrant-2', [SiteController::class,'quadtwo'])->name('quadtwo');
+Route::get('/quadrant-2', [TaskController::class,'quadtwo'])->name('quadtwo');
 
-Route::get('/quadrant-3', [SiteController::class,'quadthree'])->name('quadthree');
+Route::get('/quadrant-3', [TaskController::class,'quadthree'])->name('quadthree');
 
-Route::get('/quadrant-4', [SiteController::class,'quadfour'])->name('quadfour');
+Route::get('/quadrant-4', [TaskController::class,'quadfour'])->name('quadfour');
 
 Route::get('/tips', [SiteController::class,'tips'])->name('tips');
 
@@ -55,3 +55,5 @@ Route::get('/insights', [SiteController::class,'insights'])->name('insights');
 Route::get('/statistics', [SiteController::class,'statistics'])->name('statistics');
 
 Route::post('/store',[TaskController::class,'store'])->name('store');
+
+Route::put('/tasks/{taskId}/complete', [TaskController::class, 'updateStatus'])->name('completed');

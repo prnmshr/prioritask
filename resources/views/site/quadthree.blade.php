@@ -8,70 +8,131 @@
 
 @section('content')
 
-    <div id="quadran-cards" class="grid-quad">
-        <div class="card quadran q-3 q-start" style="width: 18rem;">
-            <table class="card-body">
-                <tr>
-                    <h5 class="card-title">Important & Urgent</h5>
-                </tr>
+<div id="quadran-cards" class="grid-quad">
+    <div class="card quadran q-3 q-start" style="width: 18rem; height:auto !important;">
+        <table class="card-body">
+            <tr>
+                <h5 class="card-title">Urgent Not Important</h5>
+            </tr>
 
-                <tr>
-                    <ul>
+            <tr>
+                <ul>
+                    @php
+                        $count = 0;
+                        $now = now();
+                        $tasks = $task
+                            ->where('quadrant', 'Urgent less important')
+                            ->where('status_id', '!=', 1)
+                            ->sortBy('date');
+                    @endphp
+                
+                    @forelse ($tasks as $ts)
+                        @if ($now->lte($ts->date) || $now->isSameDay($ts->date))
+                            @if ($count < 7)
+                                <li class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="{{ $ts->id }}"
+                                        id="flexCheck{{ $ts->id }}" onchange="completeTask(this)" onclick="refreshPage()">
+                                    <label class="form-check-label" for="flexCheck{{ $ts->id }}">
+                                        {{ $ts->detail }}
+                                    </label>
+                                    <div class="d-flex justify-content-between align-item-center me-5">
+                                        <small class="text-body-secondary">{{ $ts->keyword }}</small>
+                                        <small
+                                            class="text-body-secondary">{{ \Carbon\Carbon::parse($ts->date)->format('d M Y') }}</small>
+                                    </div>
+                                </li>
+                                @php
+                                    $count++;
+                                @endphp
+                            @else
+                                @break
+                            @endif
+                        @endif
+                    @empty
                         <li class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur ipsa quam dicta, culpa
-                                aut iste eius harum! Odio nam modi,
-                            </label>
-                            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                            <span>Belum ada tugas yang dibuat.</span>
                         </li>
-                        <li class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                            <label class="form-check-label" for="flexCheckChecked">
-                                Checked checkbox
-                            </label>
-                            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                        </li>
-                        <li class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur ipsa quam dicta, culpa
-                                aut iste eius harum! Odio nam modi,
-                            </label>
-                            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                        </li>
-                    </ul>
-
-                </tr>
-            </table>
-            <div class="q-task-menu">
-                <a href="#" class="card-link icon"><img class="card-icon" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal" src="{{ Vite::asset('resources/images/icons/add.png') }}"></a>
-            </div>
-        </div>
-
-        <div class="card quadran q-3 q-end" style="width: 18rem;">
-            <table class="card-body">
-                <tr>
-                    <h5 class="card-title">Completed</h5>
-                </tr>
-
-                <tr>
-                    <ul>
-                        <li class="card-text">Lorem ipsum si</li>
-                        <li class="card-text">lorem ipsum lagi</li>
-                        <li class="card-text">iya ni masi lorem ipsum</li>
-                        <li class="card-text">gmn ya, bingung, lorem aja dh</li>
-                    </ul>
-                </tr>
-
-
-            </table>
+                    @endforelse
+                </ul>
+                
+                
+            </tr>
+        </table>
+        <div class="q-task-menu">
+            <a href="#" class="card-link icon"><img class="card-icon" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal" src="{{ Vite::asset('resources/images/icons/add.png') }}"></a>
         </div>
     </div>
+
+    <div class="card quadran q-3 q-end pb-4" style="width: 18rem; height:auto !important;">
+        <table class="card-body">
+            <tr>
+                <h5 class="card-title">Completed</h5>
+            </tr>
+
+            <tr>
+                <ul>
+                    @php
+                        $tasks = $task
+                            ->where('quadrant', 'Urgent less important')
+                            ->where('status_id', 1)
+                            ->sortBy('date');
+                    @endphp
+
+                    @forelse ($tasks as $ts)
+                        <li class="card-text">{{ $ts->detail }}</li>
+                    @empty
+                        <li class="card-text">Tidak ada tugas yang diselesaikan.</li>
+                    @endforelse
+                </ul>
+
+
+            </tr>
+
+
+        </table>
+    </div>
+</div>
+
+<script>
+    function refreshPage() {
+        location.reload(true);
+    }
+</script>
 
 @endsection
 
 @section('modal')
-    @include('layouts.partials.modal')
+@include('layouts.partials.modal')
+@endsection
+
+@section('script')
+<script>
+    function completeTask(checkbox) {
+        const taskId = checkbox.value;
+
+        fetch(`/tasks/${taskId}/complete`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}', // Include CSRF token if needed
+                },
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data.message);
+                // Handle success, e.g., update UI
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Handle error, e.g., show an alert to the user
+            });
+    }
+</script>
+
 @endsection
