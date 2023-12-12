@@ -7,75 +7,144 @@
     <div id="quadran-cards" class="grid">
         <div class="card quadran q-1" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Important & urgent</h5>
                 <ul class="task-list">
+                    @php
+                        $count = 0;
+                        $now = now();
+                    @endphp
+                    @foreach ($task->where('quadrant', 'Important & urgent')->sortBy('date') as $ts)
+                        @if ($now->lte($ts->date) || $now->isSameDay($ts->date))
+                            @if ($count < 3)
+                                <li class="card-text mx-5">
+                                    {{ $ts->keyword }}
+                                </li>
+                                @php
+                                    $count++;
+                                @endphp
+                            @else
+                            @break
+                            @endif
+                        @endif
+                    @endforeach
 
-                    <li class="card-text">Lorem ipsum <p class="card-text"><small class="text-body-secondary">Last updated 3
-                                mins ago</small></p>
-                    </li>
-                    <li class="card-text">Ipsum Lorem</li>
-                    <li class="card-text">Hiyaa apa ayo</li>
+
                 </ul>
-                <div class="task-menu">
-                    <a href="#" class="card-link icon"><img class="card-icon" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" src="{{ Vite::asset('resources/images/icons/add.png') }}"></a>
-                    <a href="{{ route('quadone') }}" class="card-link icon"><img class="card-icon"
-                            src="{{ Vite::asset('resources/images/icons/menu.png') }}"></a>
-                </div>
-            </div>
-        </div>
-        <div class="card quadran q-2" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <ul class="task-list">
-                    <li class="card-text">Lorem ipsum</li>
-                    <li class="card-text">Ipsum Lorem</li>
-                    <li class="card-text">Hiyaa apa ayo</li>
-                </ul>
-                <div class="task-menu">
-                    <a href="#" class="card-link icon"><img class="card-icon" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" src="{{ Vite::asset('resources/images/icons/add.png') }}"></a>
-                    <a href="{{ route('quadtwo') }}" class="card-link icon"><img class="card-icon"
-                            src="{{ Vite::asset('resources/images/icons/menu.png') }}"></a>
-                </div>
-            </div>
-        </div>
-        <div class="card quadran q-3" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <ul class="task-list">
-                    <li class="card-text">Lorem ipsum</li>
-                    <li class="card-text">Ipsum Lorem</li>
-                    <li class="card-text">Hiyaa apa ayo</li>
-                </ul>
-                <div class="task-menu">
-                    <a href="#" class="card-link icon"><img class="card-icon" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" src="{{ Vite::asset('resources/images/icons/add.png') }}"></a>
-                    <a href="{{ route('quadthree') }}" class="card-link icon"><img class="card-icon"
-                            src="{{ Vite::asset('resources/images/icons/menu.png') }}"></a>
-                </div>
-            </div>
-        </div>
-        <div class="card quadran q-4" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <ul class="task-list">
-                    <li class="card-text">Lorem ipsum</li>
-                    <li class="card-text">Ipsum Lorem</li>
-                    <li class="card-text">Hiyaa apa ayo</li>
-                </ul>
-                <div class="task-menu">
-                    <a href="#" class="card-link icon"><img class="card-icon" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" src="{{ Vite::asset('resources/images/icons/add.png') }}"></a>
-                    <a href="{{ route('quadfour') }}" class="card-link icon"><img class="card-icon"
-                            src="{{ Vite::asset('resources/images/icons/menu.png') }}"></a>
-                </div>
+            <div class="task-menu">
+                <a href="#" class="card-link icon"><img class="card-icon" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" src="{{ Vite::asset('resources/images/icons/add.png') }}"></a>
+                <a href="{{ route('quadone') }}" class="card-link icon"><img class="card-icon"
+                        src="{{ Vite::asset('resources/images/icons/menu.png') }}"></a>
             </div>
         </div>
     </div>
 
+    <div class="card quadran q-2" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Important Less Urgent</h5>
+            <ul class="task-list">
+                @php
+                    $count = 0;
+                    $now = now();
+                @endphp
+                @foreach ($task->where('quadrant', 'Important less urgent')->sortBy('date') as $ts)
+                    @if ($now->lte($ts->date) || $now->isSameDay($ts->date))
+                        @if ($count < 3)
+                            <li class="card-text mx-5">
+                                {{ $ts->keyword }}
+                            </li>
+                            @php
+                                $count++;
+                            @endphp
+                        @else
+                        @break
+                        @endif
+                    @endif
+                @endforeach
+
+
+            </ul>
+            <div class="task-menu">
+                <a href="#" class="card-link icon"><img class="card-icon" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" src="{{ Vite::asset('resources/images/icons/add.png') }}"></a>
+                <a href="{{ route('quadtwo') }}" class="card-link icon"><img class="card-icon"
+                        src="{{ Vite::asset('resources/images/icons/menu.png') }}"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card quadran q-3" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Urgent less important</h5>
+            <ul class="task-list">
+                @php
+                    $count = 0;
+                    $now = now();
+                @endphp
+                @foreach ($task->where('quadrant', 'Urgent less important')->sortBy('date') as $ts)
+                    @if ($now->lte($ts->date) || $now->isSameDay($ts->date))
+                        @if ($count < 3)
+                            <li class="card-text mx-5">
+                                {{ $ts->keyword }}
+                            </li>
+                            @php
+                                $count++;
+                            @endphp
+                        @else
+                        @break
+                        @endif
+                    @endif
+                @endforeach
+
+
+            </ul>
+            <div class="task-menu">
+                <a href="#" class="card-link icon"><img class="card-icon" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" src="{{ Vite::asset('resources/images/icons/add.png') }}"></a>
+                <a href="{{ route('quadthree') }}" class="card-link icon"><img class="card-icon"
+                        src="{{ Vite::asset('resources/images/icons/menu.png') }}"></a>
+            </div>
+        </div>
+    </div>
+    <div class="card quadran q-4" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Not important nor urgent</h5>
+            <ul class="task-list">
+                @php
+                    $count = 0;
+                    $now = now();
+                @endphp
+                @foreach ($task->where('quadrant', 'Not important nor urgent')->sortBy('date') as $ts)
+                    @if ($now->lte($ts->date) || $now->isSameDay($ts->date))
+                        @if ($count < 3)
+                            <li class="card-text mx-5">
+                                {{ $ts->keyword }}
+                            </li>
+                            @php
+                                $count++;
+                            @endphp
+                        @else
+                        @break
+                        @endif
+                    @endif
+                @endforeach
+
+
+            </ul>
+            <div class="task-menu">
+                <a href="#" class="card-link icon"><img class="card-icon" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" src="{{ Vite::asset('resources/images/icons/add.png') }}"></a>
+                <a href="{{ route('quadfour') }}" class="card-link icon"><img class="card-icon"
+                        src="{{ Vite::asset('resources/images/icons/menu.png') }}"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @endsection
 
 @section('modal')
-    @include('layouts.partials.modal')
+@include('layouts.partials.modal')
 @endsection
+

@@ -53,7 +53,9 @@
         function goBack() {
             window.history.back();
         }
+
     </script>
+    @yield('script')
 </body>
 
 </html>

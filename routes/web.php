@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,7 +32,7 @@ require __DIR__.'/auth.php';
 
 // App routes
 
-Route::get('/', [SiteController::class,'home'])->middleware(['auth', 'verified'])->name('home');
+Route::get('/', [TaskController::class,'home'])->middleware(['auth', 'verified'])->name('home');
 
 Route::get('/quadrant-1', [SiteController::class,'quadone'])->name('quadone');
 
@@ -53,3 +54,4 @@ Route::get('/insights', [SiteController::class,'insights'])->name('insights');
 
 Route::get('/statistics', [SiteController::class,'statistics'])->name('statistics');
 
+Route::post('/store',[TaskController::class,'store'])->name('store');
