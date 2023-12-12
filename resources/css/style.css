@@ -111,8 +111,9 @@ h1.title {
     margin-inline-end: 0;
     margin-bottom: 5%;
     margin-top: 0;
-    align-items: center;
+    align-items:start;
     grid-gap: 25px;
+    height: 400px;
 }
 
 .quadran {
@@ -125,7 +126,7 @@ h1.title {
 
 .q-start {
     width: 700px !important;
-    height: 500px;
+    /* height: auto !important; */
     border-radius: 10px;
     border: none !important;
     box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.25);
@@ -138,7 +139,7 @@ h1.title {
 div.q-end {
     width: 370px !important;
     padding-inline: 20px;
-    height: 500px;
+    height: auto;
     border-radius: 10px;
     border: none !important;
     opacity: 70%;

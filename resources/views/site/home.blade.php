@@ -12,8 +12,13 @@
                     @php
                         $count = 0;
                         $now = now();
+                        $tasks = $task
+                            ->where('quadrant', 'Important & urgent')
+                            ->where('status_id','!=', 1)
+                            ->sortBy('date');
                     @endphp
-                    @foreach ($task->where('quadrant', 'Important & urgent')->sortBy('date') as $ts)
+                
+                    @forelse ($tasks as $ts)
                         @if ($now->lte($ts->date) || $now->isSameDay($ts->date))
                             @if ($count < 3)
                                 <li class="card-text mx-5">
@@ -23,13 +28,18 @@
                                     $count++;
                                 @endphp
                             @else
-                            @break
+                                @break
                             @endif
                         @endif
-                    @endforeach
-
-
+                    @empty
+                        <li class="card-text mx-5">
+                            Belum ada tugas yang dibuat.
+                        </li>
+                        <br><br>
+                    @endforelse
                 </ul>
+                <br>
+                
             <div class="task-menu">
                 <a href="#" class="card-link icon"><img class="card-icon" data-bs-toggle="modal"
                         data-bs-target="#exampleModal" src="{{ Vite::asset('resources/images/icons/add.png') }}"></a>
@@ -46,8 +56,13 @@
                 @php
                     $count = 0;
                     $now = now();
+                    $tasks = $task
+                        ->where('quadrant', 'Important less urgent')
+                        ->where('status_id','!=', 1)
+                        ->sortBy('date');
                 @endphp
-                @foreach ($task->where('quadrant', 'Important less urgent')->sortBy('date') as $ts)
+            
+                @forelse ($tasks as $ts)
                     @if ($now->lte($ts->date) || $now->isSameDay($ts->date))
                         @if ($count < 3)
                             <li class="card-text mx-5">
@@ -57,13 +72,18 @@
                                 $count++;
                             @endphp
                         @else
-                        @break
+                            @break
                         @endif
                     @endif
-                @endforeach
-
-
+                @empty
+                    <li class="card-text mx-5">
+                        Belum ada tugas yang dibuat.
+                    </li>
+                    <br><br>
+                @endforelse
             </ul>
+            <br>
+
             <div class="task-menu">
                 <a href="#" class="card-link icon"><img class="card-icon" data-bs-toggle="modal"
                         data-bs-target="#exampleModal" src="{{ Vite::asset('resources/images/icons/add.png') }}"></a>
@@ -80,8 +100,13 @@
                 @php
                     $count = 0;
                     $now = now();
+                    $tasks = $task
+                        ->where('quadrant', 'Urgent less important')
+                        ->where('status_id','!=', 1)
+                        ->sortBy('date');
                 @endphp
-                @foreach ($task->where('quadrant', 'Urgent less important')->sortBy('date') as $ts)
+            
+                @forelse ($tasks as $ts)
                     @if ($now->lte($ts->date) || $now->isSameDay($ts->date))
                         @if ($count < 3)
                             <li class="card-text mx-5">
@@ -91,13 +116,18 @@
                                 $count++;
                             @endphp
                         @else
-                        @break
+                            @break
                         @endif
                     @endif
-                @endforeach
-
-
+                @empty
+                    <li class="card-text mx-5">
+                        Belum ada tugas yang dibuat.
+                    </li>
+                    <br><br>
+                @endforelse
             </ul>
+            <br>
+
             <div class="task-menu">
                 <a href="#" class="card-link icon"><img class="card-icon" data-bs-toggle="modal"
                         data-bs-target="#exampleModal" src="{{ Vite::asset('resources/images/icons/add.png') }}"></a>
@@ -113,8 +143,13 @@
                 @php
                     $count = 0;
                     $now = now();
+                    $tasks = $task
+                        ->where('quadrant', 'Not important nor urgent')
+                        ->where('status_id','!=', 1)
+                        ->sortBy('date');
                 @endphp
-                @foreach ($task->where('quadrant', 'Not important nor urgent')->sortBy('date') as $ts)
+            
+                @forelse ($tasks as $ts)
                     @if ($now->lte($ts->date) || $now->isSameDay($ts->date))
                         @if ($count < 3)
                             <li class="card-text mx-5">
@@ -124,13 +159,18 @@
                                 $count++;
                             @endphp
                         @else
-                        @break
+                            @break
                         @endif
                     @endif
-                @endforeach
-
-
+                @empty
+                    <li class="card-text mx-5">
+                        Belum ada tugas yang dibuat.
+                    </li>
+                    <br><br>
+                @endforelse
             </ul>
+            <br>
+
             <div class="task-menu">
                 <a href="#" class="card-link icon"><img class="card-icon" data-bs-toggle="modal"
                         data-bs-target="#exampleModal" src="{{ Vite::asset('resources/images/icons/add.png') }}"></a>

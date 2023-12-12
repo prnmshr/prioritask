@@ -25,6 +25,7 @@
                     <div class="mb-3">
                         <label for="quadrant" class="col-form-label"></label>
                         <select class="form-control" id="quadrant" name="quadrant">
+                            <option selected>Choose Priority ...</option>
                             <option value="Important & urgent">Important & urgent</option>
                             <option value="Important less urgent">Important less urgent</option>
                             <option value="Urgent less important">Urgent less important</option>
