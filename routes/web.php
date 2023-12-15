@@ -46,13 +46,13 @@ Route::get('/tips', [SiteController::class,'tips'])->name('tips');
 
 Route::get('/evaluate', [SiteController::class,'evaluate'])->name('evaluate');
 
-Route::get('/achieved', [SiteController::class,'achieved'])->name('achieved');
+Route::get('/achieved', [TaskController::class,'achieved'])->name('achieved');
 
-Route::get('/unachieved', [SiteController::class,'unachieved'])->name('unachieved');
+Route::get('/unachieved', [TaskController::class,'unachieved'])->name('unachieved');
 
-Route::get('/insights', [SiteController::class,'insights'])->name('insights');
+Route::get('/insights', [TaskController::class,'insights'])->name('insights');
 
-Route::get('/statistics', [SiteController::class,'statistics'])->name('statistics');
+Route::get('/statistics', [TaskController::class,'statistics'])->name('statistics');
 
 Route::post('/store',[TaskController::class,'store'])->name('store');
 

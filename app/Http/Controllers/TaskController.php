@@ -34,39 +34,31 @@ class TaskController extends Controller
         $task->quadrant = $request->quadrant;
         $task->save();
 
-        return redirect()->route('home');
+        return redirect()->back()->with('success','Tugas berhasil anda tambahkan!');
     }
 
     public function quadone()
     {
         $task = Task::all();
         return view('site.quadone', ['task' => $task]);
-
-        return redirect()->route('quadone');
     }
 
     public function quadtwo()
     {
         $task = Task::all();
         return view('site.quadtwo', ['task' => $task]);
-
-        return redirect()->route('quadtwo');
     }
 
     public function quadthree()
     {
         $task = Task::all();
         return view('site.quadthree', ['task' => $task]);
-
-        return redirect()->route('quadthree');
     }
 
     public function quadfour()
     {
         $task = Task::all();
         return view('site.quadfour', ['task' => $task]);
-
-        return redirect()->route('quadfour');
     }
 
 
@@ -106,5 +98,29 @@ class TaskController extends Controller
         $task->save();
 
         return response()->json(['message' => 'Task status updated'], 200);
+    }
+
+    public function achieved()
+    {
+        $task = Task::all();
+        return view('site.achieved', ['task' => $task]);
+    }
+
+    public function unachieved()
+    {
+        $task = Task::all();
+        return view('site.unachieved', ['task' => $task]);
+    }
+
+    public function insights()
+    {
+        $task = Task::all();
+        return view('site.insights', ['task' => $task]);
+    }
+
+    public function statistics()
+    {
+        $task = Task::all();
+        return view('site.statistics', ['task' => $task]);
     }
 }
