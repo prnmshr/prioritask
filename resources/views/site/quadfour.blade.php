@@ -8,54 +8,78 @@
 
 @section('content')
 
-<div id="quadran-cards" class="grid-quad">
-    <div class="card quadran q-4 q-start" style="width: 18rem; height:auto !important;">
-        <table class="card-body">
-            <tr>
-                <h5 class="card-title">Not Important Nor Urgent</h5>
-            </tr>
+    @if ($message = Session::get('success'))
+        <div id="alert" class="alert alert-secondary alert-dismissible fade show" role="alert">
+            {{ $message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
 
-            <tr>
-                <ul>
-                    @php
-                        $count = 0;
-                        $now = now();
-                        $tasks = $task
-                            ->where('quadrant', 'Not important nor urgent')
-                            ->where('status_id', '!=', 1)
-                            ->sortBy('date');
-                    @endphp
-                
-                    @forelse ($tasks as $ts)
-                        @if ($now->lte($ts->date) || $now->isSameDay($ts->date))
-                            @if ($count < 7)
+        <script>
+            setTimeout(function() {
+                document.getElementById('alert').style.display = 'none';
+            }, 2000);
+        </script>
+    @endif
+
+
+
+    <div id="quadran-cards" class="grid-quad">
+        <div class="card quadran q-4 q-start" style="width: 18rem; height:auto !important;">
+            <table class="card-body">
+                <tr>
+                    <h5 class="card-title">Not Important Nor Urgent</h5>
+                </tr>
+
+                <tr>
+                    <ul>
+                        @php
+                            $count = 0;
+                            $now = now();
+                            $tasks = $task
+                                ->where('quadrant', 'Not important nor urgent')
+                                ->where('status_id', '!=', 1)
+                                ->sortBy('date');
+                            $late = $task
+                                ->where('quadrant', 'Not important nor urgent')
+                                ->where('status_id', '!=', 1)
+                                ->where('date', '<', now());
+                        @endphp
+                    
+                        @forelse ($tasks as $ts)
+                            @if ($count < 5 && ($now->lte($ts->date) || $now->isSameDay($ts->date)))
                                 <li class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="{{ $ts->id }}"
-                                        id="flexCheck{{ $ts->id }}" onchange="completeTask(this)" onclick="refreshPage()">
+                                    <input onclick="refreshPage()" class="form-check-input" type="checkbox" value="{{ $ts->id }}"
+                                        id="flexCheck{{ $ts->id }}" onchange="completeTask(this)">
                                     <label class="form-check-label" for="flexCheck{{ $ts->id }}">
                                         {{ $ts->detail }}
                                     </label>
                                     <div class="d-flex justify-content-between align-item-center me-5">
                                         <small class="text-body-secondary">{{ $ts->keyword }}</small>
-                                        <small
-                                            class="text-body-secondary">{{ \Carbon\Carbon::parse($ts->date)->format('d M Y') }}</small>
+                                        <small class="text-body-secondary">{{ \Carbon\Carbon::parse($ts->date)->format('d M Y') }}</small>
                                     </div>
                                 </li>
                                 @php
                                     $count++;
                                 @endphp
-                            @else
-                                @break
                             @endif
-                        @endif
-                    @empty
-                        <li class="form-check">
-                            <span>Belum ada tugas yang dibuat.</span>
-                        </li>
-                    @endforelse
-                </ul>
-                
-                
+                        @empty
+                            <li class="card-text mx-5">Belum ada tugas yang dibuat.</li>
+                        @endforelse
+                    
+                        @foreach ($late as $lt)
+                            @if ($count < 7)
+                                <li class="card-text mx-4">
+                                    {{ $lt->keyword }}
+                                    <small class="badge text-bg-danger mx-4">Late</small>
+                                </li>
+                                @php
+                                    $count++;
+                                @endphp
+                            @endif
+                        @endforeach
+                    </ul>
+                    
+
             </tr>
         </table>
         <div class="q-task-menu">
